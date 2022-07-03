@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar'
-import { ReactNode, useState } from 'react'
+import { ChangeEvent, ReactNode, useState } from 'react'
 
 const WorkingCalendar = () => {
   const currentDate = new Date()
@@ -16,7 +16,7 @@ const WorkingCalendar = () => {
     })
   const [selectedDays, setDays] = useState(defaultWorkingDay)
 
-  const onClickDay = (e) => {
+  const onClickDay = (e: ChangeEvent<HTMLSpanElement>) => {
     const index = selectedDays.findIndex((selectedDay) => selectedDay === Number(e.target.innerText))
     if (index === -1) {
       setDays([...selectedDays, Number(e.target.innerText)])
@@ -29,9 +29,11 @@ const WorkingCalendar = () => {
   }
 
   const [dailyRate, setDailyRate] = useState(940)
-  const onDailyRateChange = (e) => {
-    setDailyRate(e.target.value)
-    setEmailBody(`Mein Forecast für ${currentMonth + 1}.${currentYear} ist ${e.target.value * selectedDays.length}€`)
+  const onDailyRateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDailyRate(Number(e.target.value))
+    setEmailBody(
+      `Mein Forecast für ${currentMonth + 1}.${currentYear} ist ${Number(e.target.value) * selectedDays.length}€`
+    )
   }
 
   const [email, setEmail] = useState('')
@@ -87,13 +89,13 @@ const WorkingCalendar = () => {
           id="email"
           value={email}
           placeholder="someone@email.com"
-          onChange={(e) => setEmail(e.target.value)}></input>
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}></input>
       </div>
 
       <textarea
         className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;"
         value={emailBody}
-        onChange={(e) => setEmailBody(e.target.value)}></textarea>
+        onChange={(e: ChangeEvent<HTMLAreaElement>) => setEmailBody(e.target.value)}></textarea>
       <a
         className="px-4 py-2 rounded bg-blue-600 text-white"
         href={`mailto:${email}?subject=Forecast ${currentMonth + 1}.${currentYear}&body=${encodeURI(emailBody)}`}>
