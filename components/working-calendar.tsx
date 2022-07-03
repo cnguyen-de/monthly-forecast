@@ -16,16 +16,17 @@ const WorkingCalendar = () => {
     })
   const [selectedDays, setDays] = useState(defaultWorkingDay)
 
-  const onClickDay = (e: ChangeEvent<HTMLSpanElement>) => {
+  const onClickDay = (e) => {
     const index = selectedDays.findIndex((selectedDay) => selectedDay === Number(e.target.innerText))
     if (index === -1) {
       setDays([...selectedDays, Number(e.target.innerText)])
+      setEmailBody(`Mein Forecast für ${currentMonth + 1}.${currentYear} ist ${dailyRate * (selectedDays.length + 1)}€`)
     } else {
       const newSelectedDays = [...selectedDays]
       newSelectedDays.splice(index, 1)
       setDays(newSelectedDays)
+      setEmailBody(`Mein Forecast für ${currentMonth + 1}.${currentYear} ist ${dailyRate * newSelectedDays.length}€`)
     }
-    setEmailBody(`Mein Forecast für ${currentMonth + 1}.${currentYear} ist ${dailyRate * selectedDays.length}€`)
   }
 
   const [dailyRate, setDailyRate] = useState(940)
