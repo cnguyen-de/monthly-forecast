@@ -96,7 +96,7 @@ const WorkingCalendar = () => {
       <textarea
         className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;"
         value={emailBody}
-        onChange={(e: ChangeEvent<HTMLAreaElement>) => setEmailBody(e.target.value)}></textarea>
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setEmailBody(e.target.value)}></textarea>
       <a
         className="px-4 py-2 rounded bg-blue-600 text-white"
         href={`mailto:${email}?subject=Forecast ${currentMonth + 1}.${currentYear}&body=${encodeURI(emailBody)}`}>
