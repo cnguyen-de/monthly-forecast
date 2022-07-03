@@ -1,5 +1,4 @@
-import Calendar from 'react-calendar'
-import { ChangeEvent, ReactNode, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 const WorkingCalendar = () => {
   const currentDate = new Date()
@@ -49,19 +48,19 @@ const WorkingCalendar = () => {
         <input
           type="number"
           id="dailyRate"
-          className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;"
+          className="block w-full rounded-md border-transparent bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0"
           value={dailyRate}
           min="1"
           step="any"
           onChange={onDailyRateChange}></input>
       </div>
 
-      <h3 className="font-bold text-xl text-right">
-        {currentMonth + 1}.{currentYear}
+      <h3 className="text-right text-xl font-bold">
+        {currentDate.toLocaleString('default', { month: 'long' })} {currentYear}
       </h3>
-      <div className="grid grid-cols-7 grid-flow-row w-full gap-2">
+      <div className="grid w-full grid-flow-row grid-cols-7 gap-2">
         {weekDays.map((weekday, i) => (
-          <span className="uppercase text-sm font-medium" key={i}>
+          <span className="text-center text-sm font-medium uppercase" key={i}>
             {weekday}
           </span>
         ))}
@@ -70,10 +69,13 @@ const WorkingCalendar = () => {
         ))}
         {daysInMonth.map((dayInMonth, i) => (
           <span
-            className={`p-2 cursor-pointer hover:bg-blue-100 text-gray-900 hover:text-black rounded text-center ${
-              selectedDays.includes(dayInMonth.getDate()) ? 'bg-blue-200' : ''
+            className={`inline-block cursor-pointer rounded p-2 text-center text-gray-900 hover:bg-blue-100 hover:text-black ${
+              selectedDays.includes(dayInMonth.getDate())
+                ? 'bg-gradient-to-tr from-blue-200 to-teal-300 hover:from-blue-300 hover:to-teal-300'
+                : ''
             }`}
             key={i}
+            title={selectedDays.includes(dayInMonth.getDate()) ? `Project Day` : 'Non-working Day'}
             onClick={onClickDay}>
             {dayInMonth.getDate()}
           </span>
@@ -82,10 +84,10 @@ const WorkingCalendar = () => {
       {/* <div className="mt-8 uppercase font-bold">Forecast: {dailyRate * selectedDays.length}€</div> */}
       <div className="w-full">
         <label className="relative inset-0 m-0 p-0" htmlFor="email">
-          Email
+          Email to
         </label>
         <input
-          className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;"
+          className="block w-full rounded-md border-transparent bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0"
           type="email"
           id="email"
           value={email}
@@ -94,11 +96,11 @@ const WorkingCalendar = () => {
       </div>
 
       <textarea
-        className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0;"
+        className="block w-full rounded-md border-transparent bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0"
         value={emailBody}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setEmailBody(e.target.value)}></textarea>
       <a
-        className="px-4 py-2 rounded bg-blue-600 text-white"
+        className="rounded bg-gradient-to-r from-blue-600 to-teal-500 px-4 py-2 text-white hover:from-blue-700 hover:to-teal-600"
         href={`mailto:${email}?subject=Forecast ${currentMonth + 1}.${currentYear}&body=${encodeURI(emailBody)}`}>
         Create Email
       </a>

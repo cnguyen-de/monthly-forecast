@@ -12,13 +12,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="max-w-3xl mx-auto flex flex-col items-center">
-        <h1 className="sm:text-3xl md:text-4xl xl:text-5xl tracking-wider uppercase font-bold my-8">
+      <main className="mx-auto flex max-w-3xl flex-col items-center">
+        <h1 className="my-8 bg-gradient-to-r from-blue-800 to-teal-700 bg-clip-text text-center text-2xl font-bold capitalize tracking-wider text-transparent underline decoration-sky-500 sm:text-3xl md:text-4xl xl:text-4xl">
           Forecast Email Generator
         </h1>
-        <span className="absolute right-12 top-12 group text-4xl cursor-help">
+        <span className="group absolute right-8 top-8 cursor-help text-4xl">
           *
-          <span className="absolute group-hover:block hidden text-sm right-0 w-64">
+          <span className="absolute right-0 hidden w-64 rounded bg-white p-2 text-sm shadow-md group-hover:block">
             No input data is saved, this website functions only on client side
           </span>
         </span>
