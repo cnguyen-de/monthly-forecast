@@ -43,16 +43,25 @@ const WorkingCalendar = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="w-full">
+      <div className="relative w-full">
         <label htmlFor="dailyRate">Daily Rate</label>
-        <input
-          type="number"
-          id="dailyRate"
-          className="block w-full rounded-md border-transparent bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0"
-          value={dailyRate}
-          min="1"
-          step="any"
-          onChange={onDailyRateChange}></input>
+        <div className="flex">
+          <input
+            type="number"
+            id="dailyRate"
+            className="relative block w-full rounded-l-md border-transparent bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0"
+            value={dailyRate}
+            min="1"
+            step="any"
+            onChange={onDailyRateChange}
+          />
+          <input
+            className="w-10 text-center rounded-r-md bg-gray-100 border-transparent"
+            type="text"
+            value="€"
+            disabled
+          />
+        </div>
       </div>
 
       <h3 className="text-right text-xl font-bold">
