@@ -6,20 +6,20 @@ import WorkingCalendar from '../components/working-calendar'
 const Home: NextPage = () => {
   const title = 'Forecast Email Generator'
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-slate-900">
       <Head>
         <title>{title}</title>
         <meta name="description" content={title} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto flex max-w-3xl flex-col items-center bg-white min-h-screen">
-        <h1 className="my-8 bg-gradient-to-r from-blue-800 to-teal-700 bg-clip-text text-center text-2xl font-bold capitalize tracking-wider text-transparent underline decoration-sky-500 sm:text-3xl md:text-4xl xl:text-4xl">
+      <main className="mx-auto flex max-w-3xl flex-col items-center bg-white min-h-screen dark:bg-slate-800 dark:text-gray-100">
+        <h1 className="my-8 bg-gradient-to-r dark:from-blue-400 dark:to-teal-300 from-blue-800 to-teal-700 bg-clip-text text-center text-2xl font-bold capitalize tracking-wider text-transparent underline decoration-sky-500 sm:text-3xl md:text-4xl xl:text-4xl">
           {title}
         </h1>
         <span className="group absolute right-8 top-8 cursor-help text-4xl">
           *
-          <span className="absolute right-0 hidden w-64 rounded bg-white p-2 text-sm shadow-md group-hover:block">
+          <span className="absolute right-0 hidden w-64 rounded bg-white dark:bg-gray-700 z-10 p-2 text-sm shadow-md group-hover:block">
             No input data is saved, this website functions only on client side
           </span>
         </span>
